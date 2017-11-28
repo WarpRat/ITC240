@@ -1,5 +1,5 @@
 <?php include 'includes/config.php'?>
-<?php include 'includes/header.php'?>
+<?php get_header()?>
 
 <?php
 
@@ -130,5 +130,5 @@ function process_post()
     return $myReturn;
 }
 
-include 'includes/footer.php'?>
+get_footer()?>
 

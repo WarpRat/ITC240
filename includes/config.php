@@ -29,6 +29,16 @@ $config->title = THIS_PAGE;
 $config->banner = 'Blue Water<span>Catering</span>';
 $config->image_sub = 'images/uploads/';
 
+//START NEW THEME STUFF
+$sub_folder = 'bluewater';//change to 'widgets' or 'sprockets' etc.
+
+//add subfolder, in this case 'fidgets' if not loaded to root:
+$config->physical_path = $_SERVER["DOCUMENT_ROOT"] . '/' . $sub_folder;
+$config->virtual_path = 'http://' . $_SERVER["HTTP_HOST"] . '/' . $sub_folder;
+$config->theme = 'BlueRipple';//sub folder to themes
+
+//END NEW THEME STUFF
+
 
 switch(THIS_PAGE){
 
@@ -54,14 +64,10 @@ switch(THIS_PAGE){
     break;
 }
 
-//echo $_SERVER['PHP_SELF'];
 
-//echo THIS_PAGE;
-
-
-
-//die;
-
-
+//START NEW THEME STUFF
+//creates theme virtual path for theme assets, JS, CSS, images
+$config->theme_virtual = $config->virtual_path . '/themes/' . $config->theme . '/';
+//END NEW THEME STUFF
 
 ?>

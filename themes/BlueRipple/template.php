@@ -1,5 +1,4 @@
-<?php include 'includes/config.php'?>
-<?php get_header()?>
+<?php include 'header.php'?>
 
 <p>Some real clever stuff</p>
 <p>Some real clever stuff</p>
@@ -7,4 +6,4 @@
 <p>Some real clever stuff</p>
 <p>Some real clever stuff</p>
 
-<?php get_footer()?>
+<?php include 'footer.php'?>
