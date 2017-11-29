@@ -24,7 +24,9 @@
         $('#slider').nivoSlider();
     });
     </script>
-
+    
+    <?=$config->loadhead?>
+    
 </head>
 
 <body>
