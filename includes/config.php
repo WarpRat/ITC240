@@ -39,6 +39,27 @@ $config->theme = 'BlueRipple';//sub folder to themes
 
 //END NEW THEME STUFF
 
+//START CONFIG SNIPPET #1
+
+define('SECURE',false); #force secure, https, for all site pages
+
+define('PREFIX', 'widgets_'); #Adds uniqueness to your DB table names.  Limits hackability, naming collisions
+
+header("Cache-Control: no-cache");header("Expires: -1");#Helps stop browser & proxy caching
+
+//END CONFIG SNIPPET #1
+
+//START CONFIG SNIPPET #2
+
+define('ADMIN_PATH', $config->virtual_path . '/admin/'); # Could change to sub folder
+define('INCLUDE_PATH', $config->physical_path . '/includes/');
+
+//force secure website
+if (SECURE && $_SERVER['SERVER_PORT'] != 443) {#force HTTPS
+	header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+}
+
+//END CONFIG SNIPPET #2
 
 switch(THIS_PAGE){
 
@@ -49,7 +70,7 @@ switch(THIS_PAGE){
         $config->title = 'Sample Dishes';
         $config->sub_banner = 'A Sample Selection of Our Cuisine';
     break;
-    case 'daily.php':    
+    case 'daily.php':
         $config->title = 'Daily Menus';
     break;
     case 'contact.php':
@@ -70,4 +91,35 @@ switch(THIS_PAGE){
 $config->theme_virtual = $config->virtual_path . '/themes/' . $config->theme . '/';
 //END NEW THEME STUFF
 
-?>
+//START CONFIG SNIPPET #3
+
+/*
+ * adminWidget allows clients to get to admin page from anywhere
+ * code will show/hide based on logged in status
+*/
+/*
+ * adminWidget allows clients to get to admin page from anywhere
+ * code will show/hide based on logged in status
+*/
+if(startSession() && isset($_SESSION['AdminID']))
+{#add admin logged in info to sidebar or nav
+
+    $config->adminWidget = '
+
+
+        <a href="' . ADMIN_PATH . 'admin_dashboard.php">ADMIN</a>
+        <a href="' . ADMIN_PATH . 'admin_logout.php">LOGOUT</a>
+
+
+    ';
+}else{//show login (YOU MAY WANT TO SET TO EMPTY STRING FOR SECURITY)
+
+    $config->adminWidget = '
+
+        <a  href="' . ADMIN_PATH . 'admin_login.php">LOGIN</a>
+
+    ';
+
+}
+
+//END CONFIG SNIPPET #3
